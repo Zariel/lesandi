@@ -1,13 +1,12 @@
 {
-  "name": "web",
-  "version": "0.0.0",
-  "description": "ERROR: No README.md file found!",
-  "main": "Gruntfile.js",
+  "name": "lesandi",
+  "version": "0.1.0",
+  "description": "An angular front end for Hvost",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "",
-  "author": "",
+  "repository": "https://github.com/zariel/lesandi",
+  "author": "Chris Bannister <c.bannister'at'gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "grunt": "~0.4.1",
