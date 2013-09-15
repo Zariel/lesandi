@@ -20,7 +20,6 @@ app.factory 'AuthService', [
 
 					key = data['api-key']
 					authed := true
-					console.log key
 
 					$http.defaults.headers.common['api-key'] = key
 
@@ -47,8 +46,9 @@ app.factory 'AuthService', [
 app.factory 'AuthInterceptor', [
 	'$q'
 	'$rootScope'
+	'$location'
 
-	($q, $rootScope) ->
+	($q, $rootScope, $location) ->
 		responseError: ({config, data, headers, status}:res) ->
 			return res if status is not 401
 			return res if config.url.match /\/api\/auth/
@@ -58,7 +58,7 @@ app.factory 'AuthInterceptor', [
 			req = { defer, config }
 
 			$rootScope.reqs.push req
-			
+
 			$rootScope.$broadcast 'unauthorised-api', { page: $location.path! }
 
 			return defer.promise
