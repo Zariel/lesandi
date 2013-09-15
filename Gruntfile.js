@@ -69,6 +69,8 @@ module.exports = function(grunt) {
 						"vendor/scripts/jquery/*.js",
 
 						"vendor/scripts/angular/angular.js",
+						"vendor/scripts/angular/angular-animate.js",
+						"vendor/scripts/angular/angular-route.js",
 						"vendor/scripts/angular/angular-cookies.js",
 						"vendor/scripts/angular/angular-loader.js",
 						"vendor/scripts/angular/angular-resource.js",
