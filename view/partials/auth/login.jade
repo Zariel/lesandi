@@ -1,0 +1,20 @@
+#bg-hide
+    .container: .modal
+        form(ng-model = "auth", ng-controller = "AuthCtrl", ng-submit = "login(auth)")
+            .modal-header
+                h3 Login
+            .modal-body
+                .alert.alert-error(ng-show = "auth.error")
+                    button(type = "button", class = "close", data-dismiss = "alert") &times;
+                    strong Login Failed
+                fieldset
+                    label Username
+                    input(type = "text",
+                        ng-model = "auth.user",
+                        placeholder = "Username",
+                        required)
+
+                    label Password
+                    input(type = "password", ng-model = "auth.passw", placeholder = "Password", required)
+            .form-actions.modal-footer
+                button.btn.btn-primary Login
