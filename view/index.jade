@@ -14,9 +14,8 @@ html(lang = 'en', ng-app = 'recess')
 
 	body
 		ng-include(src = "'/partials/nav.html'")
-		div#content
+		#content
 			ng-include(src = "'/partials/controls.html'")
 			.fluid-container
 				.row-fluid
 					#main(ng-view)
-
