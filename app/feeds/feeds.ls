@@ -24,14 +24,12 @@ app.controller 'FeedController', [
 app.factory 'Feed', [
 	'$resource'
 	($resource) ->
-		$resource '/api/feed/:id/:action', {
-			id: '@id'
-		}, {
+		$resource '/api/feed/:id/:action', id: '@id',
 			read:
 				method: 'PUT'
 				params:
 					action: 'read'
-		}
+		
 ]
 
 app.directive 'feedlist', [
@@ -105,43 +103,41 @@ app.directive 'feedlist', [
 
 app.directive 'feeditem', [
 	->
-		{
-			require: '^feedlist'
-			restrict: 'E'
-			transclude: true
-			replace: true
-			template: """
-				<section class = "feed-outer" id = {{id}}>
-					<section ng-class = "clazz" class = "feed-item well">
-						<div ng-transclude>
-						</div>
-					</section>
-				</section>"""
-			controller: ["$scope", "Feed", ($scope, Feed) ->
-			]
+		require: '^feedlist'
+		restrict: 'E'
+		transclude: true
+		replace: true
+		template: """
+			<section class = "feed-outer" id = {{id}}>
+				<section ng-class = "clazz" class = "feed-item well">
+					<div ng-transclude>
+					</div>
+				</section>
+			</section>"""
+		controller: ["$scope", "Feed", ($scope, Feed) ->
+		]
 
-			link: (scope, element, attrs, controller) ->
-				feed = scope.feed
+		link: (scope, element, attrs, controller) ->
+			feed = scope.feed
 
-				scope.id = "f" + feed.id
+			scope.id = "f" + feed.id
 
-				controller.addItem feed, scope.$index, scope
+			controller.addItem feed, scope.$index, scope
 
-				element.bind 'click', ->
-					scope.$apply ->
-						controller.click feed, scope.$index, scope
+			element.bind 'click', ->
+				scope.$apply ->
+					controller.click feed, scope.$index, scope
 
 
+			scope.clazz = ""
+			scope.select = ->
+				scope.clazz = "feed-selected"
+
+			scope.unselect = ->
 				scope.clazz = ""
-				scope.select = ->
-					scope.clazz = "feed-selected"
 
-				scope.unselect = ->
-					scope.clazz = ""
-
-				#if "f#feedId" is scope.hash
-				#	click!
-		}
+			#if "f#feedId" is scope.hash
+			#	click!
 ]
 
 unreadFilter = -> !it.read
