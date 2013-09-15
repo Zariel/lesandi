@@ -2,9 +2,10 @@
 	.row-fluid(infinite-scroll = 'nextPage()', infinite-scroll-disabled = 'busy', infinite-scroll-distance = '1')
 		feedList
 			feedItem(ng-repeat = 'feed in feeds')
-				h2
-					a(ng-href = "{{feed.link}}", ng-bind-html-unsafe = "feed.title")
-				.feed-body(ng-bind-html-unsafe = "feed.description")
+				.feed-header
+					h2
+						a(ng-href = "{{feed.link}}", ng-bind-html = "feed.title")
+				.feed-body(ng-bind-html = "feed.description")
 				.feed-footer
 					span {{ feed.published | date:'medium' }}
 					span(style = "padding: 2px;") read
